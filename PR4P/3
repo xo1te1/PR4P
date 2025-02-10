@@ -1,0 +1,29 @@
+class Animal:
+    def __init__(self,kind,name):
+        self.kind = kind
+        self.name = name
+    def __str__(self):
+        return f"{self.kind} ({self.name})"
+
+class Zoo:
+    def __init__(self):
+        self.animals = []
+    def add_animal(self,animal):
+        self.animals.append(animal)
+    def remove_animal(self,animal):
+        self.animals.remove(animal)
+    def list_animal(self):
+        for animal in self.animals:
+            print(animal)
+
+zoo = Zoo()
+elephant = Animal("Слон", "Степан")
+tiger = Animal("Тигр","Яша")
+
+zoo.add_animal(elephant)
+zoo.add_animal(tiger)
+
+#zoo.list_animal()
+
+zoo.remove_animal(tiger)
+zoo.list_animal()

@@ -1,0 +1,12 @@
+class FibonacciContainer:
+    def __init__(self,n):
+        self.fibonacci = [0,1]
+        for i in range(2,n):
+            self.fibonacci.append(self.fibonacci[-1] + self.fibonacci[-2])
+    def __len__(self):
+        return len(self.fibonacci)
+    def __getitem__(self, index):
+        return self.fibonacci[index]
+f_container = FibonacciContainer(10)
+print(f"Довжина контейнера: {len(f_container)}")
+print("Перші 5 чисел Фібоначчі:", f_container[:5])

@@ -1,0 +1,10 @@
+class Fraction:
+    def __init__(self,numerator,denominator):
+        self.numerator = numerator
+        self.denominator = denominator
+
+    def proper_fraction(self):
+        return abs(self.numerator) < abs(self.denominator)
+
+fraction = Fraction(2,1)
+print(f"Звичайний дріб правильний?: {fraction.proper_fraction()}")

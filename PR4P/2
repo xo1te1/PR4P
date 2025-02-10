@@ -1,0 +1,15 @@
+class Vector:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+    def __sub__(self, other):
+        return Vector(self.x - other.x, self.y - other.y)
+
+vector1 = Vector(10,3)
+vector2 = Vector(5,3)
+sum_vector = vector1 + vector2
+difference_vector = vector1 - vector2
+print(f"Сума векторів: ({sum_vector.x}, {sum_vector.y})")
+print(f"Різниця векторів: ({difference_vector.x}, {difference_vector.y})")
