@@ -1,0 +1,22 @@
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def change_name(self, new_name):
+        self.name = new_name
+
+class Student(Person):
+    def __init__(self, name, age, university):
+        super().__init__(name, age)
+        self.university = university
+        self.grades = []
+    def add_grade(self, grade):
+        self.grades.append(grade)
+    def average_grade(self):
+        return sum(self.grades) / len(self.grades) if self.grades else 0
+
+student = Student("Гіга", 18, "ІПЗ")
+student.add_grade(5)
+student.add_grade(5)
+student.add_grade(5)
+print(f"Середня оцінка студента:", student.average_grade())

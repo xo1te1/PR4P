@@ -1,0 +1,31 @@
+import math
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def __repr__(self):
+        return f"({self.x}, {self.y})"
+
+class Segment:
+    def __init__(self, p1, p2):
+        self.p1 = p1
+        self.p2 = p2
+    def length(self):
+        return math.sqrt((self.p2.x - self.p1.x)**2 + (self.p2.y - self.p1.y)**2)
+
+
+class Triangle:
+    def __init__(self, p1, p2, p3):
+        self.s1 = Segment(p1, p2)
+        self.s2 = Segment(p2, p3)
+        self.s3 = Segment(p3, p1)
+    def perimeter(self):
+        return self.s1.length() + self.s2.length() + self.s3.length()
+
+
+p1 = Point(0, 0)
+p2 = Point(2, 0)
+p3 = Point(0, 6)
+triangle = Triangle(p1, p2, p3)
+print("Периметр трикутника:", triangle.perimeter())

@@ -1,0 +1,27 @@
+class Order:
+    def __init__(self):
+        self.__items = []
+    def add_item(self, name, quantity, price):
+        self.__items.append({"Назва": name, "кількість": quantity, "ціна": price})
+    def total_cost(self):
+        return sum(item["кількість"] * item["ціна"] for item in self.__items)
+    def get_items(self):
+        return self.__items
+
+class Customer:
+    def __init__(self, name):
+        self.name = name
+    def place_order(self, order_processor, order):
+        order_processor.process_order(self, order)
+
+class OrderProcessor:
+    def process_order(self, customer, order):
+        print(f"Замовлення від {customer.name} на суму {order.total_cost()} грн оброблено")
+
+order = Order()
+order.add_item("Honda", 1, 180000)
+order.add_item("Kawasaki", 2, 210000)
+
+customer = Customer("Вікторія")
+processor = OrderProcessor()
+customer.place_order(processor, order)
