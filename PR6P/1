@@ -1,0 +1,73 @@
+class Vehicle:
+    def __init__(self, brand):
+        self.brand = brand
+    
+    def start_engine(self):
+        print("Engine started")
+    
+    def __str__(self):
+        return f"Vehicle: {self.brand}"
+
+class Car(Vehicle):
+    def __init__(self, brand, model):
+        super().__init__(brand)
+        self.model = model
+    
+    def start_engine(self):
+        print("Car engine started")
+    
+    def __str__(self):
+        return f"Car: {self.brand} {self.model}"
+
+class Motorcycle(Vehicle):
+    def __init__(self, brand, type_):
+        super().__init__(brand)
+        self.type = type_
+    
+    def start_engine(self):
+        print("Motorcycle engine started")
+    
+    def __str__(self):
+        return f"Motorcycle: {self.brand} {self.type}"
+
+class ElectricCar(Car):
+    def __init__(self, brand, model, battery_capacity):
+        super().__init__(brand, model)
+        self.battery_capacity = battery_capacity
+    
+    def charge_battery(self):
+        print("Battery charging")
+    
+    def __str__(self):
+        return f"Electric Car: {self.brand} {self.model}, Battery: {self.battery_capacity}"
+
+class Garage:
+    def __init__(self):
+        self.vehicles = []
+    
+    def add_vehicle(self, vehicle):
+        if isinstance(vehicle, Vehicle):
+            self.vehicles.append(vehicle)
+        else:
+            print("До гаража можна додати лише транспортні засоби")
+    
+    def start_all_engines(self):
+        for vehicle in self.vehicles:
+            vehicle.start_engine()
+    
+    def __str__(self):
+        return "Garage contains: " + ", ".join(str(vehicle) for vehicle in self.vehicles)
+
+garage = Garage()
+car = Car("Toyota", "Corolla")
+motorcycle = Motorcycle("Harley-Davidson", "Cruiser")
+electric_car = ElectricCar("Tesla", "Model S", "100 kWh")
+
+garage.add_vehicle(car)
+garage.add_vehicle(motorcycle)
+garage.add_vehicle(electric_car)
+
+garage.start_all_engines()
+electric_car.charge_battery()
+
+print(garage)
