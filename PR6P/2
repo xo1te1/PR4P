@@ -1,0 +1,93 @@
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def introduce(self):
+        print(f"Мене звати {self.name}, мені {self.age} років.")
+
+class Employee(Person):
+    def __init__(self, name, age, position):
+        super().__init__(name, age)
+        self.position = position
+
+    def work(self):
+        print(f"{self.name} працює {self.position}.")
+
+    def __str__(self):
+        return f"Співробітник: {self.name}, Вік: {self.age}, Посада: {self.position}"
+
+class Student(Person):
+    def __init__(self, name, age, student_id):
+        super().__init__(name, age)
+        self.student_id = student_id
+
+    def study(self):
+        print(f"Студент {self.name} (ID: {self.student_id}) навчається.")
+
+    def __str__(self):
+        return f"Студент: {self.name}, Вік: {self.age}, ID: {self.student_id}"
+
+class University:
+    def __init__(self):
+        self.employees = []
+        self.students = []
+
+    def add_employee(self, employee):
+        if isinstance(employee, Employee):
+            self.employees.append(employee)
+        else:
+            print("Можна додавати лише співробітників.")
+
+    def add_student(self, student):
+        if isinstance(student, Student):
+            self.students.append(student)
+        else:
+            print("Можна додавати лише студентів.")
+
+    def remove_employee(self, name):
+        self.employees = [emp for emp in self.employees if emp.name != name]
+
+    def remove_student(self, student_id):
+        self.students = [stu for stu in self.students if stu.student_id != student_id]
+
+    def find_person(self, identifier):
+        for emp in self.employees:
+            if emp.name == identifier:
+                return emp
+        for stu in self.students:
+            if stu.student_id == identifier:
+                return stu
+        return None
+
+    def show_info(self):
+        print("Співробітники університету:")
+        for emp in self.employees:
+            print(emp)
+        print("\nСтуденти університету:")
+        for stu in self.students:
+            print(stu)
+
+uni = University()
+emp1 = Employee("Роман", 35, "Професор")
+emp2 = Employee("Тамара", 40, "Адміністратор")
+stu1 = Student("Віка", 20, "S1234")
+stu2 = Student("Степан", 22, "S5678")
+
+uni.add_employee(emp1)
+uni.add_employee(emp2)
+uni.add_student(stu1)
+uni.add_student(stu2)
+
+uni.show_info()
+
+uni.remove_student("S1234")
+uni.remove_employee("Тамара")
+print("\nПісля видалення:")
+uni.show_info()
+
+found_person = uni.find_person("S5678")
+if found_person:
+    print(f"\nЗнайдено: {found_person}")
+else:
+    print("\nПерсону не знайдено.")
