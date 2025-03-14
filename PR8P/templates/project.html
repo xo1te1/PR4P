@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ project.name }}</h1>
+    <img src="{{ url_for('static', filename='images/' + project.image) }}" alt="{{ project.name }}">
+    <p><strong>Технології:</strong> {{ project.technologies | join(', ') }}</p>
+    <p><a href="{{ project.repo_link }}" target="_blank">Перейти до репозиторію</a></p>
+    <a href="{{ url_for('index') }}">Назад</a>
+{% endblock %}
